@@ -1,3 +1,4 @@
+import CaloriesRecordForm from "./components/calorieRecordEdit/CaloriesRecordForm"
 import RecordList from "./components/calorieRecordSection/RecordList"
 function App() {
   const records =[
@@ -20,6 +21,7 @@ function App() {
   return (
     <>
      <h1>Hello to my calorie tracker</h1>
+     <CaloriesRecordForm />
     <RecordList records={records} />
     </>
   )
