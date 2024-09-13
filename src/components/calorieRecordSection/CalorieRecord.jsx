@@ -1,14 +1,16 @@
-import "./CalorieRecord.css"
-import CalorieRecordDate from "./CalorieRecordDate";
-import StyledRecordCell from "../common/StyledRecordCell";
-const CalorieRecord = (props) =>{
-    return(
-        <ul className="record">
-            <CalorieRecordDate date={props.date} />
-            <li>{props.meal}</li>
-            <li>{props.content}</li>
-            <StyledRecordCell className="record-calories">{props.calories}</StyledRecordCell>
-        </ul>
-    )
-}
+import './CalorieRecord.css';
+import CalorieRecordDate from './CalorieRecordDate';
+import StyledRecordCell from '../common/StyledRecordCell';
+const CalorieRecord = (props) => {
+  return (
+    <ul className="record">
+      <CalorieRecordDate date={props.date} />
+      <li>{props.meal}</li>
+      <li>{props.content}</li>
+      <StyledRecordCell className="record-calories">
+        {props.calories}
+      </StyledRecordCell>
+    </ul>
+  );
+};
 export default CalorieRecord;

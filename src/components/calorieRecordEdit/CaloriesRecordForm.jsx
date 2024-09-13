@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './CaloriesRecordForm.css';
 
-const CaloriesRecordForm = () => {
+const CaloriesRecordForm = (props) => {
   const DEFAULT_VALUE = {
     date: '',
     meal: '',
@@ -35,8 +35,8 @@ const CaloriesRecordForm = () => {
   };
   const onSubmitHandler = (event) => {
     event.preventDefault();
+    props.onFormSubmit(mealRecord);
     setMealRecord(DEFAULT_VALUE);
-    console.log(mealRecord);
   };
   return (
     <form onSubmit={onSubmitHandler}>
