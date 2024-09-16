@@ -33,8 +33,10 @@ function App() {
     },
   ];
   const [records, setRecords] = useState(DEFAULT_RECORDS);
+  const [nextId, setNextId] = useState(5);
   const formSubmitHandler = (record) => {
-    setRecords([...records, record]);
+    setNextId((prevId) => prevId + 1);
+    setRecords((prevRecords) => [...prevRecords, { ...record, id: nextId }]);
   };
   return (
     <>

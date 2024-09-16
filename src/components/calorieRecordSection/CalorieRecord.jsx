@@ -1,9 +1,10 @@
-import './CalorieRecord.css';
+import styles from './CalorieRecord.module.css';
 import CalorieRecordDate from './CalorieRecordDate';
 import StyledRecordCell from '../common/StyledRecordCell';
+
 const CalorieRecord = (props) => {
   return (
-    <ul className="record">
+    <ul className={styles.record}>
       <CalorieRecordDate date={props.date} />
       <li>{props.meal}</li>
       <li>{props.content}</li>

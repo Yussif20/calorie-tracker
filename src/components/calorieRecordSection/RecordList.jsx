@@ -5,7 +5,7 @@ const RecordList = (props) => {
   return (
     <ul className="record-list">
       {props.records.map((record) => {
-        return (
+        return record.calories >= 0 ? (
           <li key={record.id}>
             <CalorieRecord
               date={record.date}
@@ -14,7 +14,7 @@ const RecordList = (props) => {
               calories={record.calories}
             />
           </li>
-        );
+        ) : null;
       })}
     </ul>
   );

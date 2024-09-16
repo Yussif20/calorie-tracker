@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './CaloriesRecordForm.css';
+import styles from './CaloriesRecordForm.module.css';
 
 const CaloriesRecordForm = (props) => {
   const DEFAULT_VALUE = {
@@ -38,8 +38,16 @@ const CaloriesRecordForm = (props) => {
     props.onFormSubmit(mealRecord);
     setMealRecord(DEFAULT_VALUE);
   };
+  let calorieInputStyle = {};
+  if (mealRecord.calories < 0) {
+    calorieInputStyle = {
+      border: '1px solid red',
+      color: 'red',
+      backgroundColor: 'white',
+    };
+  }
   return (
-    <form onSubmit={onSubmitHandler}>
+    <form className={styles.form} onSubmit={onSubmitHandler}>
       <label htmlFor="date">Date:</label>
       <input
         value={mealRecord.date}
@@ -75,6 +83,7 @@ const CaloriesRecordForm = (props) => {
         name="=calories"
         id="calories"
         onChange={onCaloriesChangeHandler}
+        style={calorieInputStyle}
       />
       <div className="footer">
         <button>Add Record</button>
