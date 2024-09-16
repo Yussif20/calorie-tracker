@@ -8,7 +8,7 @@ const CalorieRecord = (props) => {
       <CalorieRecordDate date={props.date} />
       <li>{props.meal}</li>
       <li>{props.content}</li>
-      <StyledRecordCell className="record-calories">
+      <StyledRecordCell className={styles['record-calories']}>
         {props.calories}
       </StyledRecordCell>
     </ul>

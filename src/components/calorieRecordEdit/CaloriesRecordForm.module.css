@@ -1,8 +1,17 @@
 .form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  @media (max-width: 650px) {
+    grid-template-columns: 1fr;
+  }
+  gap: 10px;
+  width: 900px;
+  @media (max-width: 950px) {
+    width: 80vw;
+  }
   background-color: #d4e0ff;
   padding: 20px;
   border-radius: 10px;
-
   & label {
     color: #333;
     margin-right: 30px;
@@ -12,12 +21,12 @@
   & input[type='text'],
   & input[type='number'],
   & input[type='date'] {
+    width: 100%;
     background-color: #333;
     color: #fff;
     border: none;
     padding: 10px;
     border-radius: 5px;
-    width: 100%;
     min-width: 255px;
     margin-bottom: 20px;
     font-size: 16px;
@@ -26,6 +35,7 @@
   }
 
   & select {
+    width: 100%;
     background-color: #333;
     color: #fff;
     border: none;
@@ -37,19 +47,19 @@
     display: block;
     box-sizing: border-box;
   }
+}
+.footer {
+  grid-column: 1/-1;
+  display: flex;
+}
 
-  & .footer {
-    display: flex;
-  }
-
-  & .footer button {
-    background-color: white;
-    color: #012367;
-    display: block;
-    border: 3px solid #012367;
-    border-radius: 15px;
-    padding: 10px;
-    cursor: pointer;
-    flex-grow: 1;
-  }
+.footer button {
+  background-color: white;
+  color: #012367;
+  display: block;
+  border: 3px solid #012367;
+  border-radius: 15px;
+  padding: 10px;
+  cursor: pointer;
+  flex-grow: 1;
 }

@@ -48,44 +48,52 @@ const CaloriesRecordForm = (props) => {
   }
   return (
     <form className={styles.form} onSubmit={onSubmitHandler}>
-      <label htmlFor="date">Date:</label>
-      <input
-        value={mealRecord.date}
-        type="date"
-        name="date"
-        id="date"
-        onChange={onDateChangeHandler}
-      />
-      <label htmlFor="meal">Meal:</label>
-      <select
-        value={mealRecord.meal}
-        name="meal"
-        id="meal"
-        onChange={onMealChangeHandler}
-      >
-        <option value="Breakfast">Breakfast</option>
-        <option value="Launch">Launch</option>
-        <option value="Dinner">Dinner</option>
-        <option value="Snacks">Snacks</option>
-      </select>
-      <label htmlFor="content">Content:</label>
-      <input
-        value={mealRecord.content}
-        type="text"
-        name="content"
-        id="content"
-        onChange={onContentChangeHandler}
-      />
-      <label htmlFor="calories">Calories:</label>
-      <input
-        value={mealRecord.calories}
-        type="number"
-        name="=calories"
-        id="calories"
-        onChange={onCaloriesChangeHandler}
-        style={calorieInputStyle}
-      />
-      <div className="footer">
+      <div>
+        <label htmlFor="date">Date:</label>
+        <input
+          value={mealRecord.date}
+          type="date"
+          name="date"
+          id="date"
+          onChange={onDateChangeHandler}
+        />
+      </div>
+      <div>
+        <label htmlFor="meal">Meal:</label>
+        <select
+          value={mealRecord.meal}
+          name="meal"
+          id="meal"
+          onChange={onMealChangeHandler}
+        >
+          <option value="Breakfast">Breakfast</option>
+          <option value="Launch">Launch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="Snacks">Snacks</option>
+        </select>
+      </div>
+      <div>
+        <label htmlFor="content">Content:</label>
+        <input
+          value={mealRecord.content}
+          type="text"
+          name="content"
+          id="content"
+          onChange={onContentChangeHandler}
+        />
+      </div>
+      <div>
+        <label htmlFor="calories">Calories:</label>
+        <input
+          value={mealRecord.calories}
+          type="number"
+          name="=calories"
+          id="calories"
+          onChange={onCaloriesChangeHandler}
+          style={calorieInputStyle}
+        />
+      </div>
+      <div className={styles.footer}>
         <button>Add Record</button>
       </div>
     </form>

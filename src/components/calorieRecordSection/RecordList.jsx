@@ -1,12 +1,12 @@
 import CalorieRecord from './CalorieRecord';
-import './RecordList.css';
+import styles from './RecordList.module.css';
 
 const RecordList = (props) => {
   return (
-    <ul className="record-list">
+    <ul className={styles['record-list']}>
       {props.records.map((record) => {
         return record.calories >= 0 ? (
-          <li key={record.id}>
+          <li className={styles['list-item']} key={record.id}>
             <CalorieRecord
               date={record.date}
               meal={record.meal}
