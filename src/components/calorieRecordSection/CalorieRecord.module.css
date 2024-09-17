@@ -4,11 +4,11 @@
   border-radius: 3px;
   list-style: none;
   display: flex;
-  color: #666;
+  color: var(--color-background-dark);
   justify-content: space-around;
   height: 40px;
   align-items: center;
-  background-color: antiquewhite;
+  background-color: var(--color-background-lighter);
 }
 
 .record-calories {
