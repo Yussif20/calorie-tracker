@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import CaloriesRecordForm from './components/calorieRecordEdit/CaloriesRecordForm';
-import RecordList from './components/calorieRecordSection/RecordList';
+import ListingSection from './components/calorieRecordSection/ListingSection';
 function App() {
   const DEFAULT_RECORDS = [
     {
@@ -41,7 +41,7 @@ function App() {
   return (
     <>
       <CaloriesRecordForm onFormSubmit={formSubmitHandler} />
-      <RecordList records={records} />
+      <ListingSection allRecords={records} />
     </>
   );
 }
