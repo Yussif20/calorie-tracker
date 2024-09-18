@@ -1,12 +1,12 @@
 .record-date-month {
-  color: darkred;
+  color: var(--color-dark-orange);
   font-weight: bold;
   font-size: 0.5rem;
 }
 
 .record-date-day {
   color: black;
-  font-weight: 200;
+  font-weight: 400;
   font-size: 1.2rem;
 }
 

@@ -16,11 +16,11 @@ const CalorieRecordDate = (props) => {
 
   return (
     <StyledRecordCell>
-      <div className={styles['record-date-day']}>
-        {formatDate(props.date).day}
-      </div>
       <div className={styles['record-date-month']}>
         {formatDate(props.date).month}
+      </div>
+      <div className={styles['record-date-day']}>
+        {formatDate(props.date).day}
       </div>
       <div className={styles['record-date-year']}>
         {formatDate(props.date).year}

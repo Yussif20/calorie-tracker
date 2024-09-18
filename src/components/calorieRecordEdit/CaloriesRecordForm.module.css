@@ -1,27 +1,26 @@
 .form {
+  width: 900px;
+  padding: 20px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  background-color: var(--color-background-light);
+  border-radius: 10px;
   @media (max-width: 650px) {
     grid-template-columns: 1fr;
   }
-  gap: 10px;
-  width: 900px;
   @media (max-width: 950px) {
     width: 80vw;
   }
-  /* background-color: #d4e0ff; */
-  background-color: var(--color-background-light);
-  padding: 20px;
-  border-radius: 10px;
   & label {
     color: #333;
     margin-right: 30px;
     margin-bottom: 10px;
   }
-
   & input[type='text'],
   & input[type='number'],
-  & input[type='date'] {
+  & input[type='date'],
+  select {
     width: 100%;
     background-color: #333;
     background-color: var(--color-background-dark);
@@ -34,32 +33,22 @@
     font-size: 16px;
     display: block;
     box-sizing: border-box;
-  }
-
-  & select {
-    width: 100%;
-    /* background-color: #333;  */
-    background-color: var(--color-background-dark);
-    color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    width: 100%;
-    min-width: 255px;
-    margin-bottom: 20px;
-    display: block;
-    box-sizing: border-box;
+    @media (max-width: 320px) {
+      min-width: 100%;
+    }
   }
 }
 .footer {
   grid-column: 1/-1;
   display: flex;
+  justify-content: center;
 }
 
 .footer button {
+  max-width: 400px;
+  font-weight: 500;
   background-color: var(--color-dark-orange);
   color: var(--color-background-dark);
-  font-weight: bold;
   display: block;
   border: 3px solid #012367;
   border-radius: 15px;
