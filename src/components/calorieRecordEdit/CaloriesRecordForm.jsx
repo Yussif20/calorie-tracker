@@ -4,7 +4,7 @@ import styles from './CaloriesRecordForm.module.css';
 const CaloriesRecordForm = (props) => {
   const DEFAULT_VALUE = {
     date: '',
-    meal: '',
+    meal: 'Breakfast',
     content: '',
     calories: 0,
   };
@@ -52,6 +52,7 @@ const CaloriesRecordForm = (props) => {
       <div>
         <label htmlFor="date">Date:</label>
         <input
+          required
           value={mealRecord.date}
           type="date"
           name="date"
@@ -62,6 +63,7 @@ const CaloriesRecordForm = (props) => {
       <div>
         <label htmlFor="meal">Meal:</label>
         <select
+          required
           value={mealRecord.meal}
           name="meal"
           id="meal"
@@ -76,6 +78,7 @@ const CaloriesRecordForm = (props) => {
       <div>
         <label htmlFor="content">Content:</label>
         <input
+          required
           value={mealRecord.content}
           type="text"
           name="content"
@@ -86,6 +89,7 @@ const CaloriesRecordForm = (props) => {
       <div>
         <label htmlFor="calories">Calories:</label>
         <input
+          required
           value={mealRecord.calories}
           type="number"
           name="=calories"

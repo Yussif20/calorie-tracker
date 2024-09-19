@@ -1,4 +1,5 @@
 .record-list {
+  min-width: 60vw;
   list-style: none;
   padding: 5px;
   background-color: var(--color-background-dark);
@@ -17,4 +18,7 @@
   margin: 20px 0;
   font-size: 20px;
   color: var(--color-light-orange);
+  @media (max-width: 600px) {
+    max-width: 100%;
+  }
 }
