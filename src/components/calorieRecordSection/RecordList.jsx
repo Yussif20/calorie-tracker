@@ -2,7 +2,7 @@ import CalorieRecord from './CalorieRecord';
 import styles from './RecordList.module.css';
 
 const RecordList = (props) => {
-  return (
+  return props.records?.length ? (
     <ul className={styles['record-list']}>
       {props.records.map((record) => {
         return record.calories >= 0 ? (
@@ -17,6 +17,8 @@ const RecordList = (props) => {
         ) : null;
       })}
     </ul>
+  ) : (
+    <div className={styles.empty}>No records found for this date</div>
   );
 };
 

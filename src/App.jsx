@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import CaloriesRecordForm from './components/calorieRecordEdit/CaloriesRecordForm';
 import ListingSection from './components/calorieRecordSection/ListingSection';
+import RecordFormModal from './components/calorieRecordEdit/RecordFormModal';
+import styles from './App.module.css';
+
 function App() {
   const DEFAULT_RECORDS = [
     {
       id: 1,
-      date: new Date(2024, 8, 6),
+      date: new Date(2024, 9, 19),
       meal: 'Breakfast',
       content: 'Eggs',
       calories: '340',
@@ -32,17 +34,30 @@ function App() {
       calories: '500',
     },
   ];
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   const [records, setRecords] = useState(DEFAULT_RECORDS);
   const [nextId, setNextId] = useState(5);
   const formSubmitHandler = (record) => {
     setNextId((prevId) => prevId + 1);
     setRecords((prevRecords) => [...prevRecords, { ...record, id: nextId }]);
   };
+
   return (
-    <>
-      <CaloriesRecordForm onFormSubmit={formSubmitHandler} />
+    <div className={styles.app}>
+      <RecordFormModal
+        isModalOpen={isModalOpen}
+        closeModal={closeModal}
+        handleFormSubmit={formSubmitHandler}
+      />
       <ListingSection allRecords={records} />
-    </>
+      <button className={styles['modal-btn']} onClick={openModal}>
+        Track Food
+      </button>
+    </div>
   );
 }
 

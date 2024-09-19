@@ -9,6 +9,7 @@ const CaloriesRecordForm = (props) => {
     calories: 0,
   };
   const [mealRecord, setMealRecord] = useState(DEFAULT_VALUE);
+
   const onDateChangeHandler = (event) => {
     setMealRecord({
       ...mealRecord,
@@ -95,6 +96,9 @@ const CaloriesRecordForm = (props) => {
       </div>
       <div className={styles.footer}>
         <button>Add Record</button>
+        <button type="button" onClick={props.onClose}>
+          Close
+        </button>
       </div>
     </form>
   );
