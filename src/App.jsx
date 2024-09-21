@@ -1,63 +1,59 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ListingSection from './components/calorieRecordSection/ListingSection';
 import RecordFormModal from './components/calorieRecordEdit/RecordFormModal';
 import styles from './App.module.css';
 
-function App() {
-  const DEFAULT_RECORDS = [
-    {
-      id: 1,
-      date: new Date(2024, 9, 19),
-      meal: 'Breakfast',
-      content: 'Eggs',
-      calories: '340',
-    },
-    {
-      id: 2,
-      date: new Date(2024, 8, 5),
-      meal: 'Launch',
-      content: 'Chicken',
-      calories: '400',
-    },
-    {
-      id: 3,
-      date: new Date(2024, 8, 4),
-      meal: 'Dinner',
-      content: 'Cheese',
-      calories: '450',
-    },
-    {
-      id: 4,
-      date: new Date(2024, 8, 6),
-      meal: 'Snacks',
-      content: 'Chocolate',
-      calories: '500',
-    },
-  ];
+const LOCAL_STORAGE_KEY = 'storageRecords';
 
+function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-  const [records, setRecords] = useState(DEFAULT_RECORDS);
-  const [nextId, setNextId] = useState(5);
+  const [records, setRecords] = useState();
   const formSubmitHandler = (record) => {
-    setNextId((prevId) => prevId + 1);
-    setRecords((prevRecords) => [...prevRecords, { ...record, id: nextId }]);
+    setRecords((prevRecords) => [
+      ...prevRecords,
+      { ...record, id: crypto.randomUUID() },
+    ]);
   };
 
+  const saveToDB = () => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(records)); //Because it accept only string
+  };
+  const loadRecord = () => {
+    const storageRecords = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (storageRecords !== null && storageRecords !== 'undefined') {
+      setRecords(
+        JSON.parse(storageRecords).map((record) => ({
+          ...record,
+          date: new Date(record.date),
+        }))
+      );
+    } else {
+      setRecords([]);
+    }
+  };
+  useEffect(() => {
+    if (!records) {
+      loadRecord();
+    } else {
+      saveToDB();
+    }
+  }, [records]);
+
   return (
-    <div className={styles.app}>
+    <main className={styles.app}>
       <RecordFormModal
         isModalOpen={isModalOpen}
         closeModal={closeModal}
         handleFormSubmit={formSubmitHandler}
       />
-      <ListingSection allRecords={records} />
+      {records && <ListingSection allRecords={records} />}
       <button className={styles['modal-btn']} onClick={openModal}>
         Track Food
       </button>
-    </div>
+    </main>
   );
 }
 
