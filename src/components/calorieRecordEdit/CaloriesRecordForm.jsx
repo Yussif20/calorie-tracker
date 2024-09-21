@@ -9,6 +9,7 @@ const CaloriesRecordForm = (props) => {
     calories: 0,
   };
   const [mealRecord, setMealRecord] = useState(DEFAULT_VALUE);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const onDateChangeHandler = (event) => {
     setMealRecord({

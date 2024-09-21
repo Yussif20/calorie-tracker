@@ -1,17 +1,42 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  --color-background-dark: #023047;
-  --color-background-light: #219ebc;
-  --color-background-lighter: #8ecae6;
-  --color-light-orange: #ffb703;
-  --color-dark-orange: #fb8500;
+  --check-background: linear-gradient(
+    45deg,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+  --bright-blue: rgb(58, 123, 253);
+  --bright-blue-hover: rgb(87, 143, 255);
+  --icon-theme: url('./assets/icon-sun.svg');
+  --color-bg-primary: hsl(235, 21%, 11%);
+  --color-bg-secondary: hsl(235, 24%, 19%);
+  --color-font-primary: hsl(234, 39%, 85%);
+  --color-font-secondary: hsl(233, 14%, 35%);
 }
+
+/* .app--isDark {
+  --icon-theme: url('./assets/icon-moon.svg');
+  --color-bg-primary: hsl(0, 0%, 98%);
+  --color-bg-secondary: hsl(236, 33%, 92%);
+  --color-font-primary: hsl(235, 19%, 35%);
+  --color-font-secondary: hsl(236, 9%, 61%);
+} */
+button {
+  outline: none;
+  border: none;
+}
+input[type='date']::-webkit-calendar-picker-indicator {
+  padding: 0;
+  background-color: red;
+}
+input[type='date']::-webkit-calendar-picker-indicator {
+  filter: hue-rotate(220deg) brightness(1.2) contrast(1.1);
+}
+
 body {
   font-family: var(font-family);
   display: grid;
   place-items: center;
   text-align: center;
-  background-color: var(--color-background-dark);
+  background-color: var(--color-bg-primary);
 }

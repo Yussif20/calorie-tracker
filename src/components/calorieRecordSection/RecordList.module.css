@@ -1,9 +1,9 @@
 .record-list {
   min-width: 60vw;
   list-style: none;
-  padding: 5px;
-  background-color: var(--color-background-dark);
-  border: 1px solid var(--color-background-light);
+  padding: 1px;
+  background: var(--check-background);
+  border: 1px solid var(--bright-blue);
   border-radius: 10px;
 }
 .record-list > li {
@@ -12,12 +12,12 @@
 .empty {
   height: 100px;
   width: 500px;
-  border: 1px solid var(--color-background-lighter);
+  border: 1px solid var(--color-font-secondary);
   border-radius: 15px;
   line-height: 100px;
   margin: 20px 0;
   font-size: 20px;
-  color: var(--color-light-orange);
+  color: var(--bright-blue);
   @media (max-width: 600px) {
     max-width: 100%;
   }
