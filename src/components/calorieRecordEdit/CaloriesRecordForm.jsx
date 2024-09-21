@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './CaloriesRecordForm.module.css';
 
 const CaloriesRecordForm = (props) => {
@@ -10,6 +10,12 @@ const CaloriesRecordForm = (props) => {
   };
   const [mealRecord, setMealRecord] = useState(DEFAULT_VALUE);
   const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    setIsFormValid(
+      mealRecord.date && mealRecord.content && mealRecord.calories
+    );
+  }, [mealRecord]);
 
   const onDateChangeHandler = (event) => {
     setMealRecord({
@@ -100,7 +106,7 @@ const CaloriesRecordForm = (props) => {
         />
       </div>
       <div className={styles.footer}>
-        <button>Add Record</button>
+        <button disabled={!isFormValid}>Add Record</button>
         <button type="button" onClick={props.onClose}>
           Close
         </button>
