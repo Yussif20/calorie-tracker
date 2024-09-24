@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import CalorieRecord from './CalorieRecord';
 import styles from './RecordList.module.css';
 

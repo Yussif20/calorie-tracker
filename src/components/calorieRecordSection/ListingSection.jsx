@@ -1,10 +1,11 @@
 import RecordList from './RecordList';
 import styles from './ListingSection.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ListingSection = (props) => {
   const { allRecords } = props;
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [filteredRecords, setFilteredRecords] = useState([]);
   const currentDateChangeHandler = (e) => {
     setCurrentDate(new Date(e.target.value));
   };
@@ -16,6 +17,15 @@ const ListingSection = (props) => {
       recordDate.getFullYear() === currentDate.getFullYear()
     );
   };
+  useEffect(() => {
+    const timeOutId = setTimeout(() => {
+      setFilteredRecords(allRecords.filter(dateFilter));
+    }, 5000);
+    return () => {
+      // useEffect cleanUp function : to clear the previous called data if no more needed
+      clearTimeout(timeOutId);
+    };
+  }, [currentDate]);
 
   return (
     <>
@@ -29,7 +39,7 @@ const ListingSection = (props) => {
         value={currentDate.toISOString().split('T')[0]}
         onChange={currentDateChangeHandler}
       />
-      <RecordList records={allRecords.filter(dateFilter)} />
+      <RecordList records={filteredRecords} />
     </>
   );
 };
