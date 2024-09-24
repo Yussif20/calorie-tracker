@@ -1,8 +1,11 @@
+import { useState, useEffect } from 'react';
 import CalorieRecord from './CalorieRecord';
 import styles from './RecordList.module.css';
 
 const RecordList = (props) => {
-  return props.records?.length ? (
+  const [totalCalories, setTotalCalories] = useState(0);
+
+  const resultElement = props.records?.length ? (
     <ul className={styles['record-list']}>
       {props.records.map((record) => {
         return record.calories >= 0 ? (
@@ -12,13 +15,20 @@ const RecordList = (props) => {
               meal={record.meal}
               content={record.content}
               calories={record.calories}
+              addCalories={setTotalCalories}
             />
           </li>
         ) : null;
       })}
     </ul>
   ) : (
-    <div className={styles.empty}>No records found for this date</div>
+    <p className={styles.empty}>No records found for this date</p>
+  );
+  return (
+    <>
+      {resultElement}
+      <p className={styles.total}>Total Calories: {totalCalories}</p>
+    </>
   );
 };
 

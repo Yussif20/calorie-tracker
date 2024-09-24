@@ -12,15 +12,14 @@
   --color-bg-secondary: hsl(235, 24%, 19%);
   --color-font-primary: hsl(234, 39%, 85%);
   --color-font-secondary: hsl(233, 14%, 35%);
-}
-
-/* .app--isDark {
+  /* 
   --icon-theme: url('./assets/icon-moon.svg');
   --color-bg-primary: hsl(0, 0%, 98%);
   --color-bg-secondary: hsl(236, 33%, 92%);
   --color-font-primary: hsl(235, 19%, 35%);
-  --color-font-secondary: hsl(236, 9%, 61%);
-} */
+  --color-font-secondary: hsl(236, 9%, 61%); */
+}
+
 button {
   outline: none;
   border: none;

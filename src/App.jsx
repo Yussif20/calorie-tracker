@@ -28,6 +28,7 @@ function App() {
         JSON.parse(storageRecords).map((record) => ({
           ...record,
           date: new Date(record.date),
+          calories: Number(record.calories),
         }))
       );
     } else {
