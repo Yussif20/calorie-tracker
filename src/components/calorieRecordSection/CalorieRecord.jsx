@@ -5,9 +5,13 @@ import { useEffect } from 'react';
 
 const CalorieRecord = (props) => {
   useEffect(() => {
-    props.addCalories((prevTotal) => prevTotal + props.calories); // when component mount
+    props.addCalories(
+      (prevTotal) => Number(prevTotal) + Number(props.calories)
+    ); // when component mount
     return () => {
-      props.addCalories((prevTotal) => prevTotal - props.calories);
+      props.addCalories(
+        (prevTotal) => Number(prevTotal) - Number(props.calories)
+      );
     }; // CLEAN UP FUNCTION (when unmount)
   }, []);
   return (
