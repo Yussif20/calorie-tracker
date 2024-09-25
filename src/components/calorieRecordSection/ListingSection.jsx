@@ -20,7 +20,7 @@ const ListingSection = (props) => {
   useEffect(() => {
     const timeOutId = setTimeout(() => {
       setFilteredRecords(allRecords.filter(dateFilter));
-    }, 5000);
+    }, 1000);
     return () => {
       // useEffect cleanUp function : to clear the previous called data if no more needed
       clearTimeout(timeOutId);
