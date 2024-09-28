@@ -1,7 +1,7 @@
 import RecordList from './RecordList';
 import styles from './ListingSection.module.css';
 import { useContext } from 'react';
-import AppContext from './../../app-context';
+import { AppContext } from '../../AppContext';
 
 const ListingSection = (props) => {
   const { allRecords } = props;

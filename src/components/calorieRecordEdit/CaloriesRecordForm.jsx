@@ -1,6 +1,6 @@
 import { useEffect, useState, useReducer, useContext } from 'react';
 import styles from './CaloriesRecordForm.module.css';
-import AppContext from '../../app-context';
+import { AppContext } from '../../AppContext';
 
 const RESET = 'RESET';
 const UPDATE_FIELD = 'UPDATE_FIELD';
@@ -92,7 +92,8 @@ const CaloriesRecordForm = (props) => {
     );
 
     props.onFormSubmit(formData);
-    dispatchFn({ type: RESET });
+    // dispatchFn({ type: RESET });
+    props.onClose();
   };
 
   const onCancelHandler = () => {

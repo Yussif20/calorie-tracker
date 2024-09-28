@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react';
 import ListingSection from './components/calorieRecordSection/ListingSection';
 import RecordFormModal from './components/calorieRecordEdit/RecordFormModal';
 import styles from './App.module.css';
-import AppContext from './app-context';
+import AppContextProvider from './AppContext';
 
 const LOCAL_STORAGE_KEY = 'storageRecords';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [totalCalories, setTotalCalories] = useState(0);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -48,16 +46,14 @@ function App() {
 
   return (
     <main className={styles.app}>
-      <AppContext.Provider
-        value={{ currentDate, setCurrentDate, totalCalories, setTotalCalories }}
-      >
+      <AppContextProvider>
         <RecordFormModal
           isModalOpen={isModalOpen}
           closeModal={closeModal}
           handleFormSubmit={formSubmitHandler}
         />
         {records && <ListingSection allRecords={records} />}
-      </AppContext.Provider>
+      </AppContextProvider>
       <button className={styles['modal-btn']} onClick={openModal}>
         Track Food
       </button>
