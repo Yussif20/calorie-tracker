@@ -1,11 +1,12 @@
-import { useEffect, useState, useReducer } from 'react';
+import { useEffect, useState, useReducer, useContext } from 'react';
 import styles from './CaloriesRecordForm.module.css';
+import AppContext from '../../app-context';
 
 const RESET = 'RESET';
 const UPDATE_FIELD = 'UPDATE_FIELD';
 
 const DEFAULT_VALUE = {
-  date: { value: new Date().toISOString().split('T')[0], valid: true },
+  date: { value: new Date(), valid: true },
   meal: { value: 'Breakfast', valid: true },
   content: { value: '', valid: false },
   calories: { value: 0, valid: false },
@@ -56,8 +57,19 @@ const formReducer = (state, action) => {
 };
 
 const CaloriesRecordForm = (props) => {
+  const { currentDate, totalCalories } = useContext(AppContext);
   const [isFormValid, setIsFormValid] = useState(false);
-  const [formState, dispatchFn] = useReducer(formReducer, DEFAULT_VALUE);
+  const [formState, dispatchFn] = useReducer(
+    formReducer,
+    DEFAULT_VALUE,
+    (initialState) => ({
+      ...initialState,
+      date: {
+        value: currentDate.toISOString().split('T')[0],
+        valid: !!currentDate,
+      },
+    })
+  );
 
   const { date, content, calories } = formState;
 
@@ -90,13 +102,18 @@ const CaloriesRecordForm = (props) => {
 
   return (
     <form className={styles.form} onSubmit={onSubmitHandler}>
+      <p className={styles.warning}>
+        You already consumed : {totalCalories} calories
+      </p>
       <div>
         <label htmlFor="date">Date:</label>
         <input
           value={formState.date.value}
           type="date"
           id="date"
-          onChange={handleFieldChange('date')}
+          onChange={() => {
+            handleFieldChange('date');
+          }}
         />
       </div>
       <div>

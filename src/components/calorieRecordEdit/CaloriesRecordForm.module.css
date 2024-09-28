@@ -74,3 +74,20 @@
   flex-direction: column;
   gap: 4px;
 }
+
+.error {
+  border: 1px solid maroon;
+  background-color: var(--theme-background-light);
+  color: maroon;
+}
+
+.warning {
+  grid-column: 1/-1;
+  background: var(--check-background);
+  color: white;
+  border-radius: var(--theme-border-radius-smooth);
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  margin: 0;
+}

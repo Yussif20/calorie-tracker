@@ -1,10 +1,11 @@
 import RecordList from './RecordList';
 import styles from './ListingSection.module.css';
-import { useState } from 'react';
+import { useContext } from 'react';
+import AppContext from './../../app-context';
 
 const ListingSection = (props) => {
   const { allRecords } = props;
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const { currentDate, setCurrentDate } = useContext(AppContext);
   const currentDateChangeHandler = (e) => {
     setCurrentDate(new Date(e.target.value));
   };

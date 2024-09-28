@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import CalorieRecord from './CalorieRecord';
 import styles from './RecordList.module.css';
+import AppContext from '../../app-context';
 
 const RecordList = (props) => {
-  const [totalCalories, setTotalCalories] = useState(0);
+  const { totalCalories, setTotalCalories } = useContext(AppContext);
 
   const resultElement = props.records?.length ? (
     <ul className={styles['record-list']}>

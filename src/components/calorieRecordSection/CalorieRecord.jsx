@@ -13,7 +13,7 @@ const CalorieRecord = (props) => {
         (prevTotal) => Number(prevTotal) - Number(props.calories)
       );
     }; // CLEAN UP FUNCTION (when unmount)
-  }, []);
+  });
   return (
     <ul className={styles.record}>
       <CalorieRecordDate date={props.date} />
