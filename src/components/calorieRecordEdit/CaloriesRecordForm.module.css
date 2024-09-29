@@ -85,7 +85,7 @@
   grid-column: 1/-1;
   background: var(--check-background);
   color: white;
-  border-radius: var(--theme-border-radius-smooth);
+  border-radius: 5px;
   height: 45px;
   line-height: 45px;
   text-align: center;

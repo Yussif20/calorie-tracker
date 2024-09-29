@@ -4,6 +4,8 @@ import RecordFormModal from './components/calorieRecordEdit/RecordFormModal';
 import styles from './App.module.css';
 import AppContextProvider from './AppContext';
 
+//TODO:Fix styles of the modal in the mobile view
+
 const LOCAL_STORAGE_KEY = 'storageRecords';
 
 function App() {

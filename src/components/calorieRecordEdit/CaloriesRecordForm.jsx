@@ -1,6 +1,7 @@
-import { useEffect, useState, useReducer, useContext } from 'react';
+import { useEffect, useState, useReducer, useContext, useRef } from 'react';
 import styles from './CaloriesRecordForm.module.css';
 import { AppContext } from '../../AppContext';
+import FormInput from '../common/FormInput';
 
 const RESET = 'RESET';
 const UPDATE_FIELD = 'UPDATE_FIELD';
@@ -58,6 +59,8 @@ const formReducer = (state, action) => {
 
 const CaloriesRecordForm = (props) => {
   const { currentDate, totalCalories } = useContext(AppContext);
+  const contentRef = useRef();
+  const caloriesRef = useRef();
   const [isFormValid, setIsFormValid] = useState(false);
   const [formState, dispatchFn] = useReducer(
     formReducer,
@@ -74,6 +77,9 @@ const CaloriesRecordForm = (props) => {
   const { date, content, calories } = formState;
 
   useEffect(() => {
+    if (!content.valid) {
+      contentRef.current.focus();
+    }
     setIsFormValid(date.valid && content.valid && calories.valid);
   }, [date.valid, content.valid, calories.valid]);
 
@@ -130,24 +136,22 @@ const CaloriesRecordForm = (props) => {
           <option value="Snacks">Snacks</option>
         </select>
       </div>
-      <div>
-        <label htmlFor="content">Content:</label>
-        <input
-          value={formState.content.value}
-          type="text"
-          id="content"
-          onChange={handleFieldChange('content')}
-        />
-      </div>
-      <div>
-        <label htmlFor="calories">Calories:</label>
-        <input
-          value={formState.calories.value}
-          type="number"
-          id="calories"
-          onChange={handleFieldChange('calories')}
-        />
-      </div>
+      <FormInput
+        label="Content"
+        ref={contentRef}
+        value={formState.content.value}
+        type="text"
+        id="content"
+        onChange={handleFieldChange('content')}
+      />
+      <FormInput
+        label="Calories"
+        ref={caloriesRef}
+        value={formState.calories.value}
+        type="number"
+        id="calories"
+        onChange={handleFieldChange('calories')}
+      />
       <div className={styles.footer}>
         <button disabled={!isFormValid}>Add Record</button>
         <button type="button" onClick={onCancelHandler}>
