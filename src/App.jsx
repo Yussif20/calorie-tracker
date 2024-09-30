@@ -1,10 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { LandingPage, TrackPage, PageLayout } from './pages';
+import { LandingPage, TrackPage, PageLayout, ErrorPage } from './pages';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <PageLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '/',
