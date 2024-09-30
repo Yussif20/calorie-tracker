@@ -42,5 +42,6 @@ input[type='date']::-webkit-calendar-picker-indicator {
 
 body {
   font-family: var(font-family);
+  color: var(--color-font-primary);
   background-color: var(--color-bg-primary);
 }
