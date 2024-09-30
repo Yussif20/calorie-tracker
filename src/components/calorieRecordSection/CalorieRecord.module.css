@@ -1,8 +1,7 @@
 .record {
-  margin: 3px 0;
-  padding: 20px 0;
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
   height: 70px;
   background-color: var(--color-bg-primary);
   color: var(--color-font-primary);

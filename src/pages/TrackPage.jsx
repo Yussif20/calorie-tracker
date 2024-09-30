@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import ListingSection from '../components/calorieRecordSection/ListingSection';
 import RecordFormModal from '../components/calorieRecordEdit/RecordFormModal';
 import styles from './TrackPage.module.css';
-import AppContextProvider from '../AppContext';
 
 const LOCAL_STORAGE_KEY = 'storageRecords';
 
@@ -46,14 +45,12 @@ export const TrackPage = () => {
 
   return (
     <main className={styles.tracker}>
-      <AppContextProvider>
-        <RecordFormModal
-          isModalOpen={isModalOpen}
-          closeModal={closeModal}
-          handleFormSubmit={formSubmitHandler}
-        />
-        {records && <ListingSection allRecords={records} />}
-      </AppContextProvider>
+      <RecordFormModal
+        isModalOpen={isModalOpen}
+        closeModal={closeModal}
+        handleFormSubmit={formSubmitHandler}
+      />
+      {records && <ListingSection allRecords={records} />}
       <button className={styles['modal-btn']} onClick={openModal}>
         Track Food
       </button>

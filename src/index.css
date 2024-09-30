@@ -25,6 +25,7 @@
   box-sizing: border-box;
 }
 a {
+  color: var(--bright-blue);
   text-decoration: none;
 }
 

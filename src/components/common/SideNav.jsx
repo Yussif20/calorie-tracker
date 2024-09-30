@@ -8,11 +8,12 @@ const SideNav = () => {
       <NavLink
         to="/"
         className={({ isActive }) => (isActive ? styles.active : undefined)}
+        end={true} // make sure it is active only when its matches the full link not just a part
       >
         Home
       </NavLink>
       <NavLink
-        to="/tracker"
+        to="/track"
         className={({ isActive }) => (isActive ? styles.active : undefined)}
       >
         Tracker
