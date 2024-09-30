@@ -19,6 +19,14 @@
   --color-font-primary: hsl(235, 19%, 35%);
   --color-font-secondary: hsl(236, 9%, 61%); */
 }
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
 
 button {
   outline: none;
@@ -34,8 +42,5 @@ input[type='date']::-webkit-calendar-picker-indicator {
 
 body {
   font-family: var(font-family);
-  display: grid;
-  place-items: center;
-  text-align: center;
   background-color: var(--color-bg-primary);
 }

@@ -1,0 +1,20 @@
+.aside {
+  padding: 12px 24px;
+  width: 20%;
+  margin-right: auto;
+  background-color: var(--color-bg-secondary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  h1 {
+    text-align: center;
+    color: var(--bright-blue);
+    margin-bottom: 12px;
+  }
+  a {
+    pad: 12px;
+    color: white;
+    text-decoration: none;
+  }
+}

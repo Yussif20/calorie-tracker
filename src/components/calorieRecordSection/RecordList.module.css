@@ -1,5 +1,6 @@
 .record-list {
-  min-width: 60vw;
+  margin: 24px 0;
+  width: 100%;
   list-style: none;
   padding: 1px;
   background: var(--check-background);
@@ -23,5 +24,6 @@
   }
 }
 .total {
+  margin-top: 20px;
   color: #fff;
 }

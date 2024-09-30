@@ -45,7 +45,7 @@ export const TrackPage = () => {
   }, [records]);
 
   return (
-    <main className={styles.app}>
+    <main className={styles.tracker}>
       <AppContextProvider>
         <RecordFormModal
           isModalOpen={isModalOpen}
