@@ -14,7 +14,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: '',
+        index: true, // make it the same path as the parent "same as the line below"
+        // path: ''
         element: <LandingPage />,
       },
       {

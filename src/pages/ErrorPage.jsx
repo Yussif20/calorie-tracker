@@ -1,32 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from './ErrorPage.module.css';
+import { useNavigateAfterCountDown } from '../utils/hooks/index.js';
 
-const INTERVAL_TIME = 1000;
-const COUNTER = 10;
 const HOME_LINK = '/';
 
 export const ErrorPage = () => {
-  const [counter, setCounter] = useState(COUNTER);
-  const intervalHandler = useRef();
-  const NavigateToHome = useNavigate();
-
-  useEffect(() => {
-    if (counter === 0) {
-      clearInterval();
-      NavigateToHome(HOME_LINK);
-    }
-  }, [counter]);
-
-  useEffect(() => {
-    intervalHandler.current = setInterval(() => {
-      setCounter((prevState) => prevState - 1);
-    }, INTERVAL_TIME);
-
-    return () => {
-      clearInterval(intervalHandler.current);
-    };
-  }, []);
+  const counter = useNavigateAfterCountDown(10, HOME_LINK);
 
   return (
     <div className={styles['error-container']}>
