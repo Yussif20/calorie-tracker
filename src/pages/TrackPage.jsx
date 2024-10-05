@@ -1,59 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import ListingSection from '../components/calorieRecordSection/ListingSection';
-import RecordFormModal from '../components/calorieRecordEdit/RecordFormModal';
 import styles from './TrackPage.module.css';
-
-const LOCAL_STORAGE_KEY = 'storageRecords';
+import { Link } from 'react-router-dom';
+import { AppContext } from '../AppContext';
 
 export const TrackPage = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-  const [records, setRecords] = useState();
-  const formSubmitHandler = (record) => {
-    setRecords((prevRecords) => [
-      ...prevRecords,
-      { ...record, id: crypto.randomUUID() },
-    ]);
-  };
-
-  const saveToDB = () => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(records)); //Because it accept only string
-  };
-  const loadRecord = () => {
-    const storageRecords = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (storageRecords !== null && storageRecords !== 'undefined') {
-      setRecords(
-        JSON.parse(storageRecords).map((record) => ({
-          ...record,
-          date: new Date(record.date),
-          calories: Number(record.calories),
-        }))
-      );
-    } else {
-      setRecords([]);
-    }
-  };
-  useEffect(() => {
-    if (!records) {
-      loadRecord();
-    } else {
-      saveToDB();
-    }
-  }, [records]);
+  const { records } = useContext(AppContext);
 
   return (
     <main className={styles.tracker}>
-      <RecordFormModal
-        isModalOpen={isModalOpen}
-        closeModal={closeModal}
-        handleFormSubmit={formSubmitHandler}
-      />
       {records && <ListingSection allRecords={records} />}
-      <button className={styles['modal-btn']} onClick={openModal}>
+      <Link className={styles['modal-btn']} to="create">
         Track Food
-      </button>
+      </Link>
     </main>
   );
 };

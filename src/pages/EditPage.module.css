@@ -45,23 +45,25 @@
   justify-content: center;
 }
 
-.footer button {
+.footer-btn {
   max-width: 400px;
   font-weight: 500;
   background-color: var(--bright-blue);
   color: var(--color-font-primary);
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 15px;
   outline: none;
   border: none;
   padding: 10px;
-  cursor: pointer;
   flex-grow: 1;
   transition: 0.3s;
   &:hover {
     background-color: var(--bright-blue-hover);
   }
 }
+
 .footer button:disabled {
   background-color: lightgray;
   border-width: 0;

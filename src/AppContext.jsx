@@ -10,11 +10,19 @@ export const AppContext = createContext({
 const AppContextProvider = (props) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [totalCalories, setTotalCalories] = useState(0);
+  const [records, setRecords] = useState([]);
 
   const { children } = props;
   return (
     <AppContext.Provider
-      value={{ currentDate, setCurrentDate, totalCalories, setTotalCalories }}
+      value={{
+        currentDate,
+        setCurrentDate,
+        totalCalories,
+        setTotalCalories,
+        records,
+        setRecords,
+      }}
     >
       {children}
     </AppContext.Provider>

@@ -1,7 +1,0 @@
-.modal {
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 15px;
-}

@@ -1,7 +1,9 @@
 import { useEffect, useState, useReducer, useContext, useRef } from 'react';
-import styles from './CaloriesRecordForm.module.css';
-import { AppContext } from '../../AppContext';
-import FormInput from '../common/FormInput';
+import styles from './EditPage.module.css';
+import { AppContext } from '../AppContext';
+import FormInput from '../components/common/FormInput';
+import { Link, useNavigate } from 'react-router-dom';
+const LOCAL_STORAGE_KEY = 'storageRecords';
 
 const RESET = 'RESET';
 const UPDATE_FIELD = 'UPDATE_FIELD';
@@ -57,11 +59,13 @@ const formReducer = (state, action) => {
   }
 };
 
-const CaloriesRecordForm = (props) => {
+export const EditPage = () => {
+  const { records, setRecords } = useContext(AppContext);
   const { currentDate, totalCalories } = useContext(AppContext);
   const contentRef = useRef();
   const caloriesRef = useRef();
   const [isFormValid, setIsFormValid] = useState(false);
+  const navigateHandler = useNavigate();
   const [formState, dispatchFn] = useReducer(
     formReducer,
     DEFAULT_VALUE,
@@ -73,6 +77,13 @@ const CaloriesRecordForm = (props) => {
       },
     })
   );
+
+  const formSubmitHandler = (record) => {
+    setRecords((prevRecords) => [
+      ...prevRecords,
+      { ...record, id: crypto.randomUUID() },
+    ]);
+  };
 
   const { date, content, calories } = formState;
 
@@ -97,15 +108,35 @@ const CaloriesRecordForm = (props) => {
       Object.entries(formState).map(([key, { value }]) => [key, value])
     );
 
-    props.onFormSubmit(formData);
-    // dispatchFn({ type: RESET });
-    props.onClose();
+    formSubmitHandler(formData);
+    dispatchFn({ type: RESET });
+    navigateHandler('..');
   };
 
-  const onCancelHandler = () => {
-    dispatchFn({ type: RESET });
-    props.onClose();
+  const saveToDB = () => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(records)); //Because it accept only string
   };
+  const loadRecord = () => {
+    const storageRecords = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (storageRecords !== null && storageRecords !== 'undefined') {
+      setRecords(
+        JSON.parse(storageRecords).map((record) => ({
+          ...record,
+          date: new Date(record.date),
+          calories: Number(record.calories),
+        }))
+      );
+    } else {
+      setRecords([]);
+    }
+  };
+  useEffect(() => {
+    if (!records) {
+      loadRecord();
+    } else {
+      saveToDB();
+    }
+  }, [records]);
 
   return (
     <form className={styles.form} onSubmit={onSubmitHandler}>
@@ -153,13 +184,20 @@ const CaloriesRecordForm = (props) => {
         onChange={handleFieldChange('calories')}
       />
       <div className={styles.footer}>
-        <button disabled={!isFormValid}>Add Record</button>
-        <button type="button" onClick={onCancelHandler}>
-          Close
+        <button
+          className={styles['footer-btn']}
+          type="submit"
+          disabled={!isFormValid}
+        >
+          Add Record
         </button>
+
+        <Link className={styles['footer-btn']} to="..">
+          <button style={{ backgroundColor: 'inherit', color: 'inherit' }}>
+            Close
+          </button>
+        </Link>
       </div>
     </form>
   );
 };
-
-export default CaloriesRecordForm;
