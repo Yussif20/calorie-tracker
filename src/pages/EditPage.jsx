@@ -3,7 +3,6 @@ import styles from './EditPage.module.css';
 import { AppContext } from '../AppContext';
 import FormInput from '../components/common/FormInput';
 import { Link, useNavigate } from 'react-router-dom';
-const LOCAL_STORAGE_KEY = 'storageRecords';
 
 const RESET = 'RESET';
 const UPDATE_FIELD = 'UPDATE_FIELD';
@@ -60,12 +59,14 @@ const formReducer = (state, action) => {
 };
 
 export const EditPage = () => {
-  const { records, setRecords } = useContext(AppContext);
-  const { currentDate, totalCalories } = useContext(AppContext);
+  const { setRecords, totalCalories, currentDate, setCurrentDate } =
+    useContext(AppContext);
+  const navigateHandler = useNavigate();
+
   const contentRef = useRef();
   const caloriesRef = useRef();
+
   const [isFormValid, setIsFormValid] = useState(false);
-  const navigateHandler = useNavigate();
   const [formState, dispatchFn] = useReducer(
     formReducer,
     DEFAULT_VALUE,
@@ -77,13 +78,6 @@ export const EditPage = () => {
       },
     })
   );
-
-  const formSubmitHandler = (record) => {
-    setRecords((prevRecords) => [
-      ...prevRecords,
-      { ...record, id: crypto.randomUUID() },
-    ]);
-  };
 
   const { date, content, calories } = formState;
 
@@ -102,41 +96,30 @@ export const EditPage = () => {
     });
   };
 
+  const formSubmitHandler = (record) => {
+    setRecords((prevRecords) => [
+      ...prevRecords,
+      { ...record, id: crypto.randomUUID() },
+    ]);
+  };
+
+  const currentDateChangeHandler = (e) => {
+    setCurrentDate(new Date(e.target.value));
+  };
+
   const onSubmitHandler = (event) => {
     event.preventDefault();
     const formData = Object.fromEntries(
       Object.entries(formState).map(([key, { value }]) => [key, value])
     );
-
     formSubmitHandler(formData);
     dispatchFn({ type: RESET });
     navigateHandler('..');
   };
-
-  const saveToDB = () => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(records)); //Because it accept only string
+  const onCancelHandler = () => {
+    navigateHandler('..');
+    // dispatchFn({ type: RESET });
   };
-  const loadRecord = () => {
-    const storageRecords = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (storageRecords !== null && storageRecords !== 'undefined') {
-      setRecords(
-        JSON.parse(storageRecords).map((record) => ({
-          ...record,
-          date: new Date(record.date),
-          calories: Number(record.calories),
-        }))
-      );
-    } else {
-      setRecords([]);
-    }
-  };
-  useEffect(() => {
-    if (!records) {
-      loadRecord();
-    } else {
-      saveToDB();
-    }
-  }, [records]);
 
   return (
     <form className={styles.form} onSubmit={onSubmitHandler}>
@@ -146,12 +129,10 @@ export const EditPage = () => {
       <div>
         <label htmlFor="date">Date:</label>
         <input
-          value={formState.date.value}
+          value={currentDate.toISOString().split('T')[0]}
           type="date"
           id="date"
-          onChange={() => {
-            handleFieldChange('date');
-          }}
+          onChange={currentDateChangeHandler}
         />
       </div>
       <div>
@@ -193,7 +174,10 @@ export const EditPage = () => {
         </button>
 
         <Link className={styles['footer-btn']} to="..">
-          <button style={{ backgroundColor: 'inherit', color: 'inherit' }}>
+          <button
+            onClick={onCancelHandler}
+            style={{ backgroundColor: 'inherit', color: 'inherit' }}
+          >
             Close
           </button>
         </Link>

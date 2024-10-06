@@ -15,8 +15,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true, // make it the same path as the parent "same as the line below"
-        // path: ''
+        index: true,
         element: <LandingPage />,
       },
       {
@@ -46,4 +45,8 @@ const App = () => {
 
 export default App;
 
-//TODO:Fix styles of the modal in the mobile view
+//TODO: handle date change in the form ✅
+//TODO: save data to Local storage ✅
+//TODO: fix total calories bug in the form
+//TODO: add delete record button
+//TODO: make website fully responsive

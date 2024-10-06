@@ -2,10 +2,10 @@ import RecordList from './RecordList';
 import styles from './ListingSection.module.css';
 import { useContext } from 'react';
 import { AppContext } from '../../AppContext';
+import { Link } from 'react-router-dom';
 
-const ListingSection = (props) => {
-  const { allRecords } = props;
-  const { currentDate, setCurrentDate } = useContext(AppContext);
+const ListingSection = () => {
+  const { currentDate, setCurrentDate, records } = useContext(AppContext);
   const currentDateChangeHandler = (e) => {
     setCurrentDate(new Date(e.target.value));
   };
@@ -30,7 +30,10 @@ const ListingSection = (props) => {
         value={currentDate.toISOString().split('T')[0]}
         onChange={currentDateChangeHandler}
       />
-      <RecordList records={allRecords.filter(dateFilter)} />
+      <Link className={styles['track-btn']} to="create">
+        Track Food
+      </Link>
+      <RecordList records={records.filter(dateFilter)} />
     </>
   );
 };
